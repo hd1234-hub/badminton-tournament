@@ -1,0 +1,12 @@
+{
+  "folders": [
+    {
+      "path": ".",
+      "name": "羽毛球赛事系统"
+    }
+  ],
+  "launch": {
+    "configurations": [],
+    "compounds": []
+  }
+}

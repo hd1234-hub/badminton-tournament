@@ -1,0 +1,5 @@
+{
+  "server": "YOUR_SERVER_IP",
+  "user": "ubuntu",
+  "remote_path": "~/badminton-tournament"
+}

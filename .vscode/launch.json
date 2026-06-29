@@ -1,0 +1,40 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "🚀 启动后端 (FastAPI)",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "uvicorn",
+      "args": ["app.main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"],
+      "cwd": "${workspaceFolder}/backend",
+      "console": "integratedTerminal",
+      "justMyCode": true
+    },
+    {
+      "name": "🎨 启动前端 (React)",
+      "type": "node",
+      "request": "launch",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev"],
+      "cwd": "${workspaceFolder}/frontend",
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "⚡ 同时启动前后端",
+      "configurations": ["🚀 启动后端 (FastAPI)", "🎨 启动前端 (React)"],
+      "presentation": {
+        "hidden": false,
+        "group": "badminton",
+        "order": 1
+      }
+    }
+  ],
+  "compounds": [
+    {
+      "name": "⚡ 同时启动前后端",
+      "configurations": ["🚀 启动后端 (FastAPI)", "🎨 启动前端 (React)"],
+      "stopAll": true
+    }
+  ]
+}

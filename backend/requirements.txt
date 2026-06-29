@@ -1,0 +1,20 @@
+fastapi==0.116.1
+uvicorn[standard]==0.30.0
+sqlalchemy==2.0.35
+pydantic==2.9.0
+pydantic-settings==2.5.0
+python-jose[cryptography]==3.3.0
+passlib[bcrypt]==1.7.4
+python-multipart==0.0.12
+pytest==8.3.0
+httpx==0.27.0
+anthropic==0.49.0
+sse-starlette==2.2.1
+slowapi==0.1.9
+redis==5.0.0
+
+# PostgreSQL支持（生产环境）
+psycopg2-binary==2.9.10
+
+# 数据库迁移工具
+alembic==1.18.5

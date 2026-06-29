@@ -1,0 +1,100 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-size: 16px;
+  }
+  
+  @media (max-width: 768px) {
+    html {
+      font-size: 14px;
+    }
+  }
+  
+  body {
+    font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", system-ui, -apple-system, sans-serif;
+    -webkit-text-size-adjust: 100%;
+    touch-action: manipulation;
+  }
+  
+  /* 防止移动端双击缩放 */
+  * {
+    touch-action: manipulation;
+  }
+  
+  /* 禁用文本选择，提升移动端体验 */
+  @media (max-width: 768px) {
+    .no-select-mobile {
+      user-select: none;
+      -webkit-user-select: none;
+    }
+  }
+  
+  /* 隐藏滚动条但保持功能 */
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@layer components {
+  /* Nailong-style gradient button */
+  .btn-nailong {
+    @apply bg-gradient-to-b from-nailong-orange-dark to-nailong-orange text-white font-semibold py-3 px-6 rounded-[30px] shadow-nailong transition-all duration-300 hover:shadow-nailong-lg hover:brightness-110 active:scale-95;
+  }
+
+  .btn-nailong-outline {
+    @apply border-2 border-nailong-orange text-nailong-orange font-medium py-2 px-4 rounded-[30px] transition-all duration-200 hover:bg-nailong-cream active:scale-95;
+  }
+
+  /* Nailong-style card */
+  .card-nailong {
+    @apply bg-white rounded-3xl shadow-nailong border border-nailong-cream-dark transition-all duration-300 hover:shadow-nailong-lg;
+  }
+
+  /* Nailong-style tag/badge */
+  .badge-nailong {
+    @apply bg-nailong-cream text-nailong-orange font-medium px-3 py-1 rounded-capsule text-sm;
+  }
+
+  /* Nailong-style input */
+  .input-nailong {
+    @apply w-full p-3 rounded-2xl border-2 border-nailong-cream-dark bg-white text-gray-700 placeholder-gray-400 transition-all duration-200 focus:border-nailong-yellow focus:ring-4 focus:ring-nailong-cream focus:outline-none;
+  }
+
+  /* Slide animations for dropdown panels */
+  @keyframes slide-down {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slide-left {
+    from {
+      opacity: 0;
+      transform: translateX(100%);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  .animate-nailong-slide-down {
+    animation: slide-down 0.3s ease-out;
+  }
+
+  .animate-nailong-slide-left {
+    animation: slide-left 0.3s ease-out;
+  }
+}

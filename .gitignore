@@ -1,0 +1,53 @@
+# Environment / secrets
+.env
+.env.*
+!.env.example
+!.env.*.example
+.env.deploy
+deploy.config.json
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.pytest_cache/
+.mypy_cache/
+.venv/
+venv/
+
+# Node
+node_modules/
+frontend/node_modules/
+frontend/dist/
+dist/
+
+# Logs / runtime
+*.log
+backend/backend.log
+backend/.env.local.sqlite
+backend/data/app.log
+data/*.log
+
+# Local databases and generated data
+*.db
+backend/data/*.db
+data/*.db
+
+# Deploy artifacts
+*.tar
+badminton-deploy.tar
+
+# IDE / OS
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Local dev scratch / one-off scripts (do not publish)
+backend/_*.py
+backend/_*.txt
+backend/*.bak
+优化记录.txt
+
+# Legacy duplicate source tree (canonical code lives in frontend/src)
+/src/
