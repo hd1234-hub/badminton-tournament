@@ -5,9 +5,25 @@ from sqlalchemy.orm import sessionmaker
 from sqlalchemy.pool import StaticPool
 
 from app.database import Base, get_db
+from app.config import settings
+from app.limiter import limiter
 from app.main import app
 
 TEST_DB_URL = "sqlite:///:memory:"
+
+
+@pytest.fixture(autouse=True)
+def test_runtime_settings():
+    original_limiter_enabled = limiter.enabled
+    original_anthropic_api_key = settings.anthropic_api_key
+    original_anthropic_auth_token = settings.anthropic_auth_token
+    limiter.enabled = False
+    settings.anthropic_api_key = ""
+    settings.anthropic_auth_token = ""
+    yield
+    limiter.enabled = original_limiter_enabled
+    settings.anthropic_api_key = original_anthropic_api_key
+    settings.anthropic_auth_token = original_anthropic_auth_token
 
 
 @pytest.fixture

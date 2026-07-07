@@ -117,7 +117,11 @@ def record_score(db: Session, match_id: int, score_a: int, score_b: int, user_id
     is_game_over = is_final_score(score_a, score_b)
 
     # 如果旧比分是有效终局比分，先回退统计数据
-    old_score_was_final = match.score_a is not None and is_final_score(match.score_a, match.score_b)
+    old_score_was_final = (
+        match.score_a is not None
+        and match.score_b is not None
+        and is_final_score(match.score_a, match.score_b)
+    )
     if old_score_was_final:
         _revert_player_stats(db, match)
 
@@ -135,7 +139,9 @@ def record_score(db: Session, match_id: int, score_a: int, score_b: int, user_id
         if rnd:
             comp = db.query(Competition).filter(Competition.id == rnd.competition_id).first()
             if comp and all(
-                is_final_score(m.score_a, m.score_b)
+                m.score_a is not None
+                and m.score_b is not None
+                and is_final_score(m.score_a, m.score_b)
                 for rnd2 in comp.rounds
                 for m in rnd2.matches
             ):

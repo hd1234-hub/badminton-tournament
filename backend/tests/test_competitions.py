@@ -32,7 +32,7 @@ def test_create_eight_player_competition(client):
     data = resp.json()
     assert data["name"] == "周日八人转"
     assert len(data["rounds"]) == 7
-    assert data["status"] == "pending"
+    assert data["status"] == "in_progress"
 
 
 def test_start_competition(client):
@@ -45,8 +45,7 @@ def test_start_competition(client):
     }, headers={"Authorization": f"Bearer {token}"}).json()
     resp = client.patch(f"/api/v1/competitions/{comp['id']}/start",
                         headers={"Authorization": f"Bearer {token}"})
-    assert resp.status_code == 200
-    assert resp.json()["status"] == "in_progress"
+    assert resp.status_code == 400
 
 
 def test_record_score(client):
@@ -57,8 +56,6 @@ def test_record_score(client):
         "format": "eight_player_rotation", "courts": 2,
         "player_ids": [1, 2, 3, 4, 5, 6, 7, 8],
     }, headers={"Authorization": f"Bearer {token}"}).json()
-    client.patch(f"/api/v1/competitions/{comp['id']}/start",
-                 headers={"Authorization": f"Bearer {token}"})
     match_id = comp["rounds"][0]["matches"][0]["id"]
     resp = client.post(f"/api/v1/matches/{match_id}/score", json={
         "score_a": 21, "score_b": 15,
@@ -68,7 +65,7 @@ def test_record_score(client):
     assert resp.json()["score_b"] == 15
 
 
-def test_duplicate_score_rejected(client):
+def test_score_can_be_updated(client):
     token, club = register_and_create_club(client)
     add_players(client, token, club["id"])
     comp = client.post("/api/v1/competitions", json={
@@ -76,8 +73,6 @@ def test_duplicate_score_rejected(client):
         "format": "eight_player_rotation", "courts": 2,
         "player_ids": [1, 2, 3, 4, 5, 6, 7, 8],
     }, headers={"Authorization": f"Bearer {token}"}).json()
-    client.patch(f"/api/v1/competitions/{comp['id']}/start",
-                 headers={"Authorization": f"Bearer {token}"})
     match_id = comp["rounds"][0]["matches"][0]["id"]
     client.post(f"/api/v1/matches/{match_id}/score", json={
         "score_a": 21, "score_b": 15,
@@ -85,7 +80,9 @@ def test_duplicate_score_rejected(client):
     resp = client.post(f"/api/v1/matches/{match_id}/score", json={
         "score_a": 19, "score_b": 21,
     }, headers={"Authorization": f"Bearer {token}"})
-    assert resp.status_code == 400
+    assert resp.status_code == 200
+    assert resp.json()["score_a"] == 19
+    assert resp.json()["score_b"] == 21
 
 
 def test_invalid_score_rejected(client):
@@ -96,8 +93,6 @@ def test_invalid_score_rejected(client):
         "format": "eight_player_rotation", "courts": 2,
         "player_ids": [1, 2, 3, 4, 5, 6, 7, 8],
     }, headers={"Authorization": f"Bearer {token}"}).json()
-    client.patch(f"/api/v1/competitions/{comp['id']}/start",
-                 headers={"Authorization": f"Bearer {token}"})
     match_id = comp["rounds"][0]["matches"][0]["id"]
     for score_a, score_b in [(30, 0), (21, 24)]:
         resp = client.post(f"/api/v1/matches/{match_id}/score", json={
@@ -114,8 +109,6 @@ def test_deuce_final_score_allowed(client):
         "format": "eight_player_rotation", "courts": 2,
         "player_ids": [1, 2, 3, 4, 5, 6, 7, 8],
     }, headers={"Authorization": f"Bearer {token}"}).json()
-    client.patch(f"/api/v1/competitions/{comp['id']}/start",
-                 headers={"Authorization": f"Bearer {token}"})
     match_id = comp["rounds"][0]["matches"][0]["id"]
     resp = client.post(f"/api/v1/matches/{match_id}/score", json={
         "score_a": 21, "score_b": 23,

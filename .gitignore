@@ -36,6 +36,7 @@ data/*.db
 # Deploy artifacts
 *.tar
 badminton-deploy.tar
+*.bak
 
 # IDE / OS
 .DS_Store

@@ -1,5 +1,7 @@
 # Badminton Tournament System
 
+[![CI](https://github.com/hd1234-hub/badminton-tournament/actions/workflows/ci.yml/badge.svg)](https://github.com/hd1234-hub/badminton-tournament/actions/workflows/ci.yml)
+
 开源羽毛球赛事管理系统，支持俱乐部赛事、公开大厅赛、多种赛制编排、实时计分看板、排行榜与 AI 助手。
 
 [English](#english) | [中文](#中文)
@@ -7,6 +9,22 @@
 ---
 
 ## 中文
+
+### 项目展示
+
+截图建议放在 `docs/images/` 目录，并在这里展示。推荐用于简历的截图包括：
+
+- `docs/images/dashboard.png`：赛事大厅 / 首页
+- `docs/images/competition-board.png`：比赛计分看板
+- `docs/images/ai-assistant.png`：AI 助手
+
+添加截图后，可使用以下格式展示：
+
+```md
+![赛事大厅](docs/images/dashboard.png)
+![比赛计分看板](docs/images/competition-board.png)
+![AI 助手](docs/images/ai-assistant.png)
+```
 
 ### 功能亮点
 
