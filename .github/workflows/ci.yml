@@ -31,11 +31,11 @@ jobs:
 
       - name: Run pytest
         env:
-          ENVIRONMENT: development
-          DATABASE_URL: sqlite:///:memory:
-          SECRET_KEY: test_secret_key_for_ci_only
+          ENVIRONMENT: "development"
+          DATABASE_URL: "sqlite:///:memory:"
+          SECRET_KEY: "test_secret_key_for_ci_only"
           RUN_AUTO_MIGRATE: "true"
-          CORS_ORIGINS: http://localhost:5173
+          CORS_ORIGINS: "http://localhost:5173"
           ANTHROPIC_AUTH_TOKEN: ""
         run: pytest
 
