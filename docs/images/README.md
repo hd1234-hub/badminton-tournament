@@ -8,6 +8,7 @@ Recommended files:
 - `create-competition.png` - competition creation flow
 - `competition-board.png` - live score board
 - `leaderboard.png` - leaderboard
-- `ai-assistant.png` - AI assistant panel
+- `ai-assistant.png` - AI assistant panel (create match + record score)
+- `ai-prediction.png` - AI fun match prediction
 
 Use PNG or WebP images with a width around 1200-1600px for clear display on GitHub.
