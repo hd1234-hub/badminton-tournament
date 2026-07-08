@@ -12,19 +12,11 @@
 
 ### 项目展示
 
-截图建议放在 `docs/images/` 目录，并在这里展示。推荐用于简历的截图包括：
+#### 赛事大厅 / 首页
 
-- `docs/images/dashboard.png`：赛事大厅 / 首页
-- `docs/images/competition-board.png`：比赛计分看板
-- `docs/images/ai-assistant.png`：AI 助手
-
-添加截图后，可使用以下格式展示：
-
-```md
 ![赛事大厅](docs/images/dashboard.png)
-![比赛计分看板](docs/images/competition-board.png)
-![AI 助手](docs/images/ai-assistant.png)
-```
+
+> 更多截图（比赛看板、AI 助手等）可继续放入 `docs/images/` 并在本节补充展示。
 
 ### 功能亮点
 
